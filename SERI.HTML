@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoLearn class</title>
+    
+    <script>
+      tailwind.config = {
+        darkMode: 'class'
+      }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="SERI.CSS">
+</head>
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <header class="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 transition-colors duration-300">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center space-x-2">
+                        <svg class="h-10 w-10 text-indigo-600 dark:text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5 0l-4.5 10.5" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="flex-1 flex justify-center px-4">
+                    <span class="animated-gradient-text text-3xl font-extrabold tracking-wider">
+                        (KEEP LEARNING, KEEP GROWING WITH NATURE)
+                    </span>
+                </div>
+
+                <div class="flex-shrink-0 flex items-center space-x-4">
+                    
+                    <button id="theme-toggle" class="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:text-white dark:hover:bg-gray-700 transition-colors">
+                        <svg id="theme-icon-dark" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 008.25-4.5zM12 2.25a.75.75 0 01.75.75v.008c0 .011.012.011.012.011a.75.75 0 010 1.485c-.012.011-.012.011 0 .011a.75.75 0 01-.75.75v-.008a.75.75 0 01-.75-.75c0-.011.012-.011.012-.011a.75.75 0 010-1.485c.012-.011.012-.011 0-.011A.75.75 0 0112 2.25z" />
+                        </svg>
+                        <svg id="theme-icon-light" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-6.364-.386l1.591-1.591M3 12H.75m.386-6.364l1.591 1.591M12 6.75a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5z" />
+                        </svg>
+                    </button>
+                    <a href="#" class="text-2xl font-bold text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors">
+                        EcoLearn
+                    </a>
+                </div>
+                
+            </div>
+        </nav>
+    </header>
+    <div class="quiz-button-container">
+        <a href="/quiz" class="glow-button">
+            <span class="button-text">START YOUR QUIZ</span>
+            <svg class="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+        </a>
+    </div>
+
+<div class="search">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <section class="text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 animate-slide-in delay-100">
+                Search Here your Doubt!!
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto animate-slide-in delay-200">
+                This is a smart search bar link with WIKIPEDIA API to help you find answers to your questions quickly and easily.
+            </p>
+            
+            <form id="search-form" class="flex justify-center max-w-2xl mx-auto shadow-2xl animate-slide-in delay-300">
+                <input 
+                    id="search-input"
+                    type="search" 
+                    placeholder="Search Ypur Doubt Here..." 
+                    class="w-full px-6 py-4 rounded-l-lg border border-gray-300 dark:border-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:outline-none text-lg"
+                >
+                <button 
+                    type="submit" 
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-r-lg font-semibold text-lg transition-colors"
+                >
+                    Search
+                </button>
+            </form>
+        </section>
+</div>
+    
+        <div class="text-center mt-10">
+            <a href="#technology" 
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors inline-block animate-slide-in delay-300">
+                Learn More About Our Project
+            </a>
+        </div>
+    
+        
+        <section id="sliders" class="py-16 mt-16"> <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white text-center mb-16 animate-slide-in delay-100">Nature Article Read This....</h2>
+            
+            <div class="space-y-16">
+                
+                <div class="max-w-3xl mx-auto animate-slide-in delay-200">
+                    <div class="slider-container relative h-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+                        
+                        <div class="slide active">
+                            <img src="/files/IMG-20251026-WA0029.jpg" alt="Slide 1-1" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="slide">
+                            <img src="/files/IMG-20251026-WA0030.jpg" alt="Slide 1-2" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="slide">
+                            <img src="/files/IMG-20251026-WA0031.jpg" alt="Slide 1-3" class="w-full h-full object-cover">
+                        </div>
+
+                        <button class="prevBtn slider-btn absolute top-1/2 -translate-y-1/2 left-3 bg-white/50 dark:bg-gray-900/50 hover:bg-white/75 dark:hover:bg-gray-900/75 text-gray-900 dark:text-white rounded-full p-3 font-bold cursor-pointer z-10 transition-colors">&lt;</button>
+                        <button class="nextBtn slider-btn absolute top-1/2 -translate-y-1/2 right-3 bg-white/50 dark:bg-gray-900/50 hover:bg-white/75 dark:hover:bg-gray-900/75 text-gray-900 dark:text-white rounded-full p-3 font-bold cursor-pointer z-10 transition-colors">&gt;</button>
+                    </div>
+
+                    <div class="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">EDUCATION AND ENVIROMENT</h3>
+                        <p class="text-gray-700 dark:text-gray-300">
+                           Progress towards quality education was already slower than required before the COVID‑19 pandemic further slowed gains. Global completion rates have risen only modestly since 2015 and learning proficiency remains low.
+
+As of 2023, 272  million children and youth were out of school, up 3 per cent since 2015 and disproportionately concentrated in low‑income countries.
+
+In addition to free primary and secondary schooling for all boys and girls by 2030, the aim is to provide equal access to affordable vocational training, eliminate gender and wealth disparities, and achieve universal access to quality higher education.
+
+Education is the key that will allow many other Sustainable Development Goals (SDGs) to be achieved. When people are able to get quality education they can break from the cycle of poverty.
+
+Education helps to reduce inequalities and to reach gender equality. It also empowers people everywhere to live more healthy and sustainable lives. Education is also crucial to fostering tolerance between people and contributes to more peaceful societies.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="max-w-3xl mx-auto animate-slide-in delay-300">
+                    <div class="slider-container relative h-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+                        
+                        <div class="slide active">
+                            <img src="/files/IMG-20251026-WA0032.jpg" alt="Sunlight streaming onto a green forest floor" class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="slide">
+                            <img src="/files/IMG-20251026-WA0033.jpg" alt="Calm lake" class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="slide">
+                            <img src="/files/IMG-20251026-WA0029.jpg" alt="Climate change" class="w-full h-full object-cover">
+                        </div>
+
+                        <button class="prevBtn slider-btn absolute top-1/2 -translate-y-1/2 left-3 bg-white/50 dark:bg-gray-900/50 hover:bg-white/75 dark:hover:bg-gray-900/75 text-gray-900 dark:text-white rounded-full p-3 font-bold cursor-pointer z-10 transition-colors">&lt;</button>
+                        <button class="nextBtn slider-btn absolute top-1/2 -translate-y-1/2 right-3 bg-white/50 dark:bg-gray-900/50 hover:bg-white/75 dark:hover:bg-gray-900/75 text-gray-900 dark:text-white rounded-full p-3 font-bold cursor-pointer z-10 transition-colors">&gt;</button>
+                    </div>
+                    
+                    <div class="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                        <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">NATURE</h3>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            Jit Bhai Srm: What progress have we made so far?
+While progress has been made towards the 2030 education targets set by the United Nations, continued efforts are required to address persistent challenges and ensure that quality education is accessible to all, leaving no one behind.
+
+, the primary school completion rate increased from 85 to 88 per cent, the lower secondary completion rate from 74 to 78 per cent, and the upper secondary completion rate from 53 to 60 per cent. However, only two in three children in sub-Saharan Africa complete primary school on time.
+ Where are people struggling the most to have access to education?
+
+Least developed countries faces the biggest challenges in providing schools with basic resources. The situation is extreme at the primary level, where over a third of schools lack basic sanitation, more than half lack electricity and over two thirds lack digital tools.
+
+Inequalities will also worsen unless the digital divide – the gap between under-connected and highly digitalized countries – is not addressed.
+ What can we do? 
+
+To deliver on Goal 4, education financing must become a national investment priority. Furthermore, measures such as making education free and compulsory, increasing the number of teachers, improving basic school infrastructure and embracing digital transformation are essential. We can aAsk our governments to place education as a priority in both policy and practice. Lobby our governments to make firm commitments to provide free primary school education to all, including vulnerable or marginalized groups.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="max-w-3xl mx-auto animate-slide-in delay-400">
+                    <div class="slider-container relative h-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+                        
+                        <div class="slide active">
+                            <img src="/files/IMG-20251026-WA0030.jpg" alt="Sunbeams shining through tall forest trees" class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="slide">
+                            <img src="/files/IMG-20251026-WA0031.jpg" alt="View from cave" class="w-full h-full object-cover">
+                        </div>
+
+                        <div class="slide">
+                            <img src="/files/IMG-20251026-WA0032.jpg" alt="Starfish" class="w-full h-full object-cover">
+                        </div>
+
+                        <button class="prevBtn slider-btn absolute top-1/2 -translate-y-1/2 left-3 bg-white/50 dark:bg-gray-900/50 hover:bg-white/75 dark:hover:bg-gray-900/75 text-gray-900 dark:text-white rounded-full p-3 font-bold cursor-pointer z-10 transition-colors">&lt;</button>
+                        <button class="nextBtn slider-btn absolute top-1/2 -translate-y-1/2 right-3 bg-white/50 dark:bg-gray-900/50 hover:bg-white/75 dark:hover:bg-gray-900/75 text-gray-900 dark:text-white rounded-full p-3 font-bold cursor-pointer z-10 transition-colors">&gt;</button>
+                    </div>
+                
+                    <div class="mt-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                        
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                            Quality Education (SDG 4)
+                        </h3>
+                        
+                        <div id="expandable-text" class="relative max-h-32 overflow-hidden transition-all duration-700 ease-in-out">
+                            
+                            <div class="text-gray-700 dark:text-gray-300 space-y-4">
+                                <p>
+                                    Progress towards quality education was already slower than required before the COVID‑19 pandemic further slowed gains. Global completion rates have risen only modestly since 2015 and learning proficiency remains low.
+                                </p>
+                                <p>
+                                    As of 2023, 272 million children and youth were out of school, up 3 per cent since 2015 and disproportionately concentrated in low‑income countries.
+                                </p>
+                                <p>
+                                    In addition to free primary and secondary schooling for all boys and girls by 2030, the aim is to provide equal access to affordable vocational training, eliminate gender and wealth disparities, and achieve universal access to quality higher education.
+                                </p>
+                                <p>
+                                    Education is the key that will allow many other Sustainable Development Goals (SDGs) to be achieved. When people are able to get quality education they can break from the cycle of poverty.
+                                </p>
+                                <p>
+                                    Education helps to reduce inequalities and to reach gender equality. It also empowers people everywhere to live more healthy and sustainable lives. Education is also crucial to fostering tolerance between people and contributes to more peaceful societies.
+                                </p>
+                                <p>
+                                    To deliver on Goal 4, education financing must become a national investment priority. Furthermore, measures such as making education free and compulsory, increasing the number of teachers, improving basic school infrastructure and embracing digital transformation are essential.
+                                </p>
+                            </div>
+
+                            <div id="fade-overlay" class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white dark:from-gray-800 to-transparent"></div>
+                        </div>
+
+                        <button id="see-more-btn" class="mt-4 text-blue-600 dark:text-blue-400 hover:underline font-medium focus:outline-none">
+                            See More
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+
+        <section id="about" class="py-16 my-12 bg-white dark:bg-gray-800 rounded-xl shadow-inner animate-slide-in delay-200 transition-colors duration-300">
+            <div class="max-w-4xl mx-auto text-center px-6">
+                <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white mb-6">About This Project</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Every year floods, cyclones, earthquakes, and landslides take thousands of lives because people don’t get timely warnings, local rescue teams are unorganized, and there is no unified platform for real-time community help and government alerts.
+                    <br /><br />
+                    This project aims to bridge this gap with AI-driven disaster prediction and a coordinated rescue network connecting citizens, NGOs, and authorities in one ecosystem.
+                </p>
+
+            
+                </div>
+        </section>
+        
+        <section id="technology" class="py-20">
+            <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white text-center mb-12 animate-slide-in delay-100">Technology Features To save Nature</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform hover:scale-105 transition-all duration-300 animate-slide-in delay-200">
+                    <h3 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-3">Tech features to save trees</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Tech features that help save trees focus on three key areas: monitoring, reforestation, and reducing paper waste. Technologies like artificial intelligence (AI), drones, and blockchain are used to protect existing forests and restore damaged ones</Fp>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform hover:scale-105 transition-all duration-300 animate-slide-in delay-300">
+                    <h3 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-3">Tech features to marine environment</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Key tech features for the marine environment include autonomous underwater vehicles (AUVs) for exploration, advanced sensors (acoustic, optical, chemical) for data collection, satellite remote sensing for tracking large-scale changes, and drones and IoT platforms for real-time monitoring and management. Additionally, emerging tools like environmental DNA (eDNA) and AI-powered catch monitoring are improving species identification and sustainable fishing practices. </p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 transform hover:scale-105 transition-all duration-300 animate-slide-in delay-400">
+                    <h3 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-3">How to Save Nature</h3>
+                    <p class="text-gray-600 dark:text-gray-400">You can protect nature by reducing your consumption of resources like water and energy, reusing items, and recycling waste. Other key actions include avoiding single-use plastics, planting trees, choosing eco-friendly transportation, and supporting local and sustainable businesses</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="py-16 my-12 bg-gray-200 dark:bg-gray-800/50 rounded-lg shadow-inner transition-colors duration-300">
+            <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white text-center mb-12 animate-slide-in delay-100">Number of Trees,Marine,Animal</h2>
+            <div class="flex flex-wrap justify-center gap-8 text-center">
+                
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-xl w-60 animate-slide-in delay-200 transition-colors duration-300">
+                    <h3 class="text-5xl font-extrabold text-indigo-600 dark:text-indigo-400">20 QUARD+</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg mt-2">Land species</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-xl w-60 animate-slide-in delay-300 transition-colors duration-300">
+                    <h3 class="text-5xl font-extrabold text-indigo-600 dark:text-indigo-400">2.2 Million+</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg mt-2">Marine species</p>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-xl w-60 animate-slide-in delay-400 transition-colors duration-300">
+                    <h3 class="text-5xl font-extrabold text-indigo-600 dark:text-indigo-400">3.04 Trillion+</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg mt-2">Nature Trees</p>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="contact" class="py-20 animate-bobbing">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-extrabold mb-6 animated-gradient-text">Please give The Feedback!</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-10">
+                    So,give us Feedback about our project and tell us how we can improve it.
+                </p>
+                
+                <form class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-2xl space-y-6 transition-colors duration-300">
+                    <textarea 
+                        placeholder="Your Feedback Motivates Us!........." 
+                        required 
+                        rows="5" 
+                        class="w-full px-5 py-3 rounded-lg border-none bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                    ></textarea>
+                    
+                    <button 
+                        type="submit" 
+                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors animate-glowing"
+                    >
+                        Submit Feedback
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 transition-colors duration-300">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+                
+                <div>
+                    <h3 class="text-gray-900 dark:text-white text-lg font-semibold mb-4">Join Us</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Youtube</a></li>
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Facebook</a></li>
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Instagram</a></li>
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Tw</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-gray-900 dark:text-white text-lg font-semibold mb-4">Team Member</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Sayan Sarkar</a></li>
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Harshit Yadav</a></li>
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Swadhin Ghosh</a></li>
+                                <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Pritam das</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-gray-900 dark:text-white text-lg font-semibold mb-4">Tips to save enviroment</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Add Trees</a></li>
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Save Water</a></li>
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Use Dustbin</a></li>
+                        <li><a href="#" class="hover:text-gray-900 dark:hover:text-white hover:underline">Use EcoFriendly things</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-gray-900 dark:text-white text-lg font-semibold mb-4">Contact Details</h3>
+                    <ul class="space-y-2">
+                        <li><span class="font-semibold text-gray-700 dark:text-gray-300">Web Desine:</span> Sayan Sarkar</li>
+                        <li><span class="font-semibold text-gray-700 dark:text-gray-300">Web Desine/Logic/Quiz:</span> Harshit Yadav</li>
+                        <li><span class="font-semibold text-gray-700 dark:text-gray-300">Web Desine/Info Collect:</span>Swadhin Ghosh</li>
+                        <li><span class="font-semibold text-gray-700 dark:text-gray-300">Web Desine/Pic Collect:</span>Pritam Das</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    
+        <div class="bg-gray-100 dark:bg-gray-900 py-6 transition-colors duration-300">
+            <div class="container mx-auto px-6 text-center text-gray-600 dark:text-gray-500">
+                &copy; EcoLearn.com 2025.All about reasearch on enviroment. and All rights reserved Studies
+            </div>
+        </div>
+    </footer>
+
+    <script src="SERI.JS"></script>
+
+</body>
+</html>

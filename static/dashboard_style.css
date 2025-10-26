@@ -1,0 +1,172 @@
+/* File name: dashboard_style.css */
+
+/* Apply Inter font */
+body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    /* Other styles... */
+    
+    /* This is your dark mode background */
+    background: linear-gradient(270deg, #24243e, #302b63, #0f0c29);
+    color: #f0f0f0;
+    
+    /* Crucial: Smooth transition for theme changes */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* This CSS code handles hiding and showing slides */
+.slider-container .slide {
+    display: none; /* All slides are hidden by default */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out; /* Nice fade effect */
+}
+
+.slider-container .slide.active {
+    display: block; /* Only the slide with the .active class will be visible */
+    opacity: 1;
+}
+
+/* --- Theme toggler button style --- */
+.theme-toggle {
+    position: absolute; /* Or your preferred position */
+    top: 20px;
+    right: 150px; /* Adjusted position, check if needed */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+
+/* --- Light Mode --- */
+/* When body has the 'light-theme' class, these styles will work */
+
+body.light-theme {
+    background: #f0f2f5; /* Light gray background */
+    color: #333; /* Dark text */
+}
+
+/* Style for the button in light mode */
+body.light-theme .theme-toggle {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+body.light-theme .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the animated gradient text */
+.animated-gradient-text {
+    background-image: linear-gradient(
+        -45deg,
+        #4f46e5, /* Indigo */
+        #ec4899, /* Pink */
+        #22d3ee, /* Cyan */
+        #f59e0b  /* Amber */
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-flow 10s ease-in-out infinite;
+}
+
+@keyframes gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Slider CSS --- */
+.slide {
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; /* Added width: 100% for correctness */
+}
+.slide.active {
+    opacity: 1;
+}
+
+/* --- Animation CSS --- */
+@keyframes bobbing {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.animate-bobbing {
+    will-change: transform;
+    animation: bobbing 4s ease-in-out infinite;
+}
+
+@keyframes glowing {
+    0% { box-shadow: 0 0 5px theme('colors.indigo.500'), 0 0 10px theme('colors.indigo.500'); }
+    50% { box-shadow: 0 0 20px theme('colors.pink.500'), 0 0 30px theme('colors.pink.500'); }
+    100% { box-shadow: 0 0 5px theme('colors.indigo.500'), 0 0 10px theme('colors.indigo.500'); }
+}
+.animate-glowing {
+    will-change: box-shadow;
+    animation: glowing 2.5s ease-in-out infinite;
+}
+
+@keyframes slide-in-up-fade {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-in {
+    opacity: 0; /* Start hidden */
+    animation: slide-in-up-fade 0.7s ease-out forwards;
+    will-change: opacity, transform;
+}
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* The following absolute positioning rules might interfere with the new dashboard layout. Remove or adjust if needed. */
+.mt-10{
+    position: absolute;
+    left: 590px; /* Check if this positioning is still needed */
+}
+
+/* Removed styles for .pic, .search, .project, .button as they used absolute positioning which might break the dashboard grid layout. Add back with adjustments if required. */
+/* .pic{
+    position: relative;
+    top: 150px;
+}
+
+.search{
+   position: relative;
+   width: 50%;
+}
+
+.project{
+  position: relative;
+   top: 100px
+}
+
+.button{
+    position: absolute;
+    left: 1100px;
+    top: 300px;
+} 
+*/

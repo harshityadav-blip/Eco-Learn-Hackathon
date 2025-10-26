@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDG Quiz - EcoLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Dark mode */
+        body.dark {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0c29 100%);
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            animation: slideIn 0.5s ease;
+            transition: background 0.3s ease;
+        }
+
+        body.dark .quiz-container {
+            background: #1f2937;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .quiz-header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .quiz-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-button {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            color: #1f2937;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .option-button:hover {
+            background: #f3f4f6;
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .option-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .option-button.selected {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .feedback-container {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback-container.correct {
+            background: #ecfdf5;
+            border: 2px solid #10b981;
+        }
+
+        .feedback-container.incorrect {
+            background: #fef2f2;
+            border: 2px solid #ef4444;
+        }
+
+        .feedback-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feedback-container.correct .feedback-title {
+            color: #10b981;
+        }
+
+        .feedback-container.incorrect .feedback-title {
+            color: #ef4444;
+        }
+
+        .explanation-text {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        #next-question-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            display: none;
+        }
+
+        #next-question-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+        }
+
+        .points-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .points-badge span {
+            font-size: 1.2rem;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark .theme-toggle {
+            background: #374151;
+            border-color: #4b5563;
+        }
+
+        body.dark .question-text {
+            color: #f3f4f6;
+        }
+
+        body.dark .option-button {
+            background: #374151;
+            color: #f3f4f6;
+            border-color: #4b5563;
+        }
+
+        body.dark .option-button:hover {
+            background: #4b5563;
+            border-color: #667eea;
+        }
+
+        body.dark .quiz-header h1 {
+            color: #f3f4f6;
+        }
+
+        body.dark .quiz-header p {
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+    <button id="theme-toggle" class="theme-toggle">🌙</button>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>🌱 Sustainability Quiz</h1>
+            <p>Test your knowledge about environmental science!</p>
+        </div>
+
+        <div id="loading-text" class="loading-spinner">
+            <div class="spinner"></div>
+        </div>
+
+        <div id="quiz-content" style="display: none;">
+            <div class="question-container">
+                <div class="question-number" id="question-number">Question 1</div>
+                <div class="points-badge">
+                    <span>💎</span> <span id="points-value">0</span> points
+                </div>
+                <p class="question-text" id="question-text"></p>
+            </div>
+
+            <div class="options-container" id="options-container">
+            </div>
+        </div>
+
+        <div id="feedback" class="feedback-container" style="display: none;">
+            <div class="feedback-title" id="feedback-text"></div>
+            <div class="explanation-text" id="explanation-text"></div>
+        </div>
+
+        <button id="next-question-btn">Continue →</button>
+        <a href="/dashboard" class="back-link">← Back to Dashboard</a>
+    </div>
+
+    <script src="/static/quiz.js"></script>
+    <script>
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            // Load saved theme
+            const savedTheme = localStorage.getItem('quiz-theme') || 'light';
+            if (savedTheme === 'dark') {
+                body.classList.add('dark');
+                themeToggle.textContent = '☀️';
+            }
+            
+            // Toggle theme on button click
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('quiz-theme', 'dark');
+                    themeToggle.textContent = '☀️';
+                } else {
+                    localStorage.setItem('quiz-theme', 'light');
+                    themeToggle.textContent = '🌙';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+/* ফাইলটির নাম: SERI.CSS */
+
+/* Apply Inter font */
+body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    /* ...অন্যান্য স্টাইল... */
+    
+    /* এটি হলো আপনার ডার্ক মোড ব্যাকগ্রাউন্ড */
+    background: linear-gradient(270deg, #24243e, #302b63, #0f0c29);
+    color: #f0f0f0;
+    
+    /* খুব জরুরি: থিম পরিবর্তনের সময় স্মুথ ট্রানজিশন */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+        .slider-container .slide {
+            display: none; /* ডিফল্টরূপে সব স্লাইড লুকানো থাকে */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out; /* সুন্দর ফেড (fade) এফেক্ট */
+        }
+
+        .slider-container .slide.active {
+            display: block; /* শুধুমাত্র .active ক্লাস সহ স্লাইডটি দেখা যাবে */
+            opacity: 1;
+        }
+/* --- থিম টগলার বাটন স্টাইল --- */
+.theme-toggle {
+    position: absolute; /* অথবা আপনার পছন্দমতো পজিশন */
+    top: 20px;
+    right: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+
+/* --- লাইট মোড --- */
+/* যখন body-তে 'light-theme' ক্লাস যোগ হবে, তখন এই স্টাইলগুলো কাজ করবে */
+
+body.light-theme {
+    background: #f0f2f5; /* হালকা ধূসর ব্যাকগ্রাউন্ড */
+    color: #333; /* ডার্ক টেক্সট */
+}
+
+/* লাইট মোডে বাটনটির স্টাইল */
+body.light-theme .theme-toggle {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+body.light-theme .theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+/* Styles for the animated gradient text */
+.animated-gradient-text {
+    background-image: linear-gradient(
+        -45deg,
+        #4f46e5, /* Indigo */
+        #ec4899, /* Pink */
+        #22d3ee, /* Cyan */
+        #f59e0b  /* Amber */
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-flow 10s ease-in-out infinite;
+}
+
+@keyframes gradient-flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Slider CSS --- */
+.slide {
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* width: 50; <-- এই ভুলটি সরানো হয়েছে */
+    height: 100%;
+}
+.slide.active {
+    opacity: 1;
+}
+
+/* --- Animation CSS --- */
+@keyframes bobbing {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.animate-bobbing {
+    will-change: transform;
+    animation: bobbing 4s ease-in-out infinite;
+}
+
+@keyframes glowing {
+    0% { box-shadow: 0 0 5px theme('colors.indigo.500'), 0 0 10px theme('colors.indigo.500'); }
+    50% { box-shadow: 0 0 20px theme('colors.pink.500'), 0 0 30px theme('colors.pink.500'); }
+    100% { box-shadow: 0 0 5px theme('colors.indigo.500'), 0 0 10px theme('colors.indigo.500'); }
+}
+.animate-glowing {
+    will-change: box-shadow;
+    animation: glowing 2.5s ease-in-out infinite;
+}
+
+@keyframes slide-in-up-fade {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-in {
+    opacity: 0; /* Start hidden */
+    animation: slide-in-up-fade 0.7s ease-out forwards;
+    will-change: opacity, transform;
+}
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* ❌ আমি নিচের CSS রুলগুলো মুছে দিয়েছি কারণ এগুলো লেআউট নষ্ট করছিল
+    .mt-10{ ... }
+    .pic{ ... }
+    .search{ ... }
+    .project{ ... }
+*/
+
+.mt-10{
+    position: absolute;
+    left: 590px;
+}
+
+.pic{
+    position: relative;
+    top: 150px;
+}
+
+
+
+.search{
+   position: relative;
+   width: 50%;
+}
+
+
+.project{
+  position: relative;
+   top: 100px
+}
+
+.button{
+    position: absolute;
+    left: 1100px;
+    top: 300px;
+}
+
+/* ===== ENHANCED QUIZ BUTTON WITH GLOW EFFECT ===== */
+.quiz-button-container {
+    position: fixed;
+    top: 250px;
+    right: 80px;
+    z-index: 1000;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.glow-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 28px 56px;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 
+        0 0 20px rgba(59, 130, 246, 0.5),
+        0 0 40px rgba(139, 92, 246, 0.4),
+        0 0 60px rgba(236, 72, 153, 0.3),
+        0 8px 32px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.glow-button:hover::before {
+    left: 100%;
+}
+
+.glow-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 0 30px rgba(59, 130, 246, 0.8),
+        0 0 60px rgba(139, 92, 246, 0.6),
+        0 0 90px rgba(236, 72, 153, 0.5),
+        0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.glow-button:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.button-icon {
+    width: 36px;
+    height: 36px;
+    animation: rotate 3s ease-in-out infinite;
+}
+
+@keyframes rotate {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+}
+
+.button-text {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode support for the button */
+body.dark .glow-button {
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%);
+}
+
+@media (max-width: 768px) {
+    .quiz-button-container {
+        position: relative;
+        right: auto;
+        top: auto;
+        margin: 30px auto;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .glow-button {
+        padding: 24px 40px;
+        font-size: 1.5rem;
+        gap: 12px;
+    }
+    
+    .button-icon {
+        width: 30px;
+        height: 30px;
+    }
+}

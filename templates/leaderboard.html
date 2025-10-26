@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - EcoLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="/dashboard" class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    EcoLearn
+                </a>
+                <div class="flex items-center space-x-4">
+                    <a href="/dashboard" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                        ← Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <div class="max-w-4xl mx-auto">
+            <!-- Title Section -->
+            <div class="text-center mb-12">
+                <h1 class="text-5xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+                    🏆 Leaderboard
+                </h1>
+                <p class="text-gray-600 dark:text-gray-400 text-lg">Top environmental champions making a difference!</p>
+            </div>
+
+            <!-- Leaderboard Cards -->
+            <div class="space-y-4">
+                {% if users %}
+                    {% for user in users %}
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+                        <div class="flex items-center justify-between p-6">
+                            <!-- Rank -->
+                            <div class="flex items-center space-x-6">
+                                {% if loop.index == 1 %}
+                                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-2xl font-bold text-white shadow-lg">
+                                        🥇
+                                    </div>
+                                {% elif loop.index == 2 %}
+                                    <div class="w-16 h-16 bg-gradient-to-br from-gray-300 to-gray-500 rounded-full flex items-center justify-center text-2xl font-bold text-white shadow-lg">
+                                        🥈
+                                    </div>
+                                {% elif loop.index == 3 %}
+                                    <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center text-2xl font-bold text-white shadow-lg">
+                                        🥉
+                                    </div>
+                                {% else %}
+                                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-xl font-bold text-white shadow-lg">
+                                        {{ loop.index }}
+                                    </div>
+                                {% endif %}
+
+                                <!-- User Info -->
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">{{ user[0] }}</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Environmental Hero</p>
+                                </div>
+                            </div>
+
+                            <!-- Score -->
+                            <div class="text-right">
+                                <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full font-bold text-lg shadow-md">
+                                    <span class="mr-2">💎</span>
+                                    {{ user[1] }} Points
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-12 text-center">
+                        <div class="text-6xl mb-4">🏃</div>
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">No Champions Yet!</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Be the first to top the leaderboard by completing challenges!</p>
+                        <a href="/dashboard" class="inline-block mt-6 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
+                            Start Your Journey →
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Stats Section -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center">
+                    <div class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-2">{{ users|length }}</div>
+                    <div class="text-gray-600 dark:text-gray-400">Total Participants</div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center">
+                    <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                        {% if users %}{{ users[0][1] if users else 0 }}{% else %}0{% endif %}
+                    </div>
+                    <div class="text-gray-600 dark:text-gray-400">Top Score</div>
+                </div>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center">
+                    <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">10</div>
+                    <div class="text-gray-600 dark:text-gray-400">Top Players</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-20 bg-white dark:bg-gray-800 text-center py-6 border-t border-gray-200 dark:border-gray-700">
+        <p class="text-gray-600 dark:text-gray-400">&copy; EcoLearn 2025. All rights reserved.</p>
+    </footer>
+</body>
+</html>
